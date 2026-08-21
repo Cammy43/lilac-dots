@@ -4,40 +4,53 @@
 #include <fstream>
 #include <string>
 
+using namespace std;
+
 inline int toInt(std::string s)
 {
     return std::stoi(s);
+}
+
+inline void notify(string n)
+{
+    system(string("notify-send \"" + n + "\" -a lilac::updChargeState()").c_str());
+}
+
+inline void error(string e)
+{
+    notify("[FATAL]: " + e);
+    cerr << e << '\n';
 }
 
 int main(int argc, char *argv[])
 {
     if (argc == 1)
     {
-        std::system("notify-send 'No arguments provided' -a pheonix::updChargeState()");
+        error("No arguments provided");
         exit(1);
     }
     if (argc > 2)
     {
-        std::system("notify-send 'Too many arguments' -a pheonix::updChargeState()");
+        error("Too many arguments");
         exit(1);
     }
     std::ofstream charging("/home/cameronv/.config/hypr/lilac/kv/lilacPM/charging.txt", std::ios::out | std::ios::trunc);
     if (!charging)
     {
-        std::system("notify-send 'File access failed' -a pheonix::updChargeState()");
+        error("File access failed");
         return 1;
     }
     if (toInt(argv[1]))
     {
-        std::system("notify-send 'Charging' -a pheonix::updChargeState()");
+        error("Charging");
         charging << "1";
     }
     else
     {
-     std::system("notify-send 'Not Charging' -a pheonix::updChargeState()");   
+        error("Not Charging");
         charging << "0";
     }
-    
+
     charging.close();
     return 0;
 }
