@@ -1,5 +1,5 @@
-# PheonixDots
-Pheonix is modern and sleek with a few tricks up it's sleeve to make it actually useful. 
+# lilac-hyprland
+Lilac is modern and sleek with a few tricks up it's sleeve to make it actually useful. 
 It uses hyprland, noctalia shell, quickshell, and tlp and is laptop friendly.
 
 not really sure what else to put here lol
