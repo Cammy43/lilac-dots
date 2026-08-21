@@ -13,6 +13,3 @@
   change power settings accordingly.
   - [X] Automatically changes power profile if charging
   - [ ] Sets power profile to power-saver when the battery percentage goes below a threshold
-### LilacConfig:
-  LilacConfig is the system that reads and applies settings specified in ~/.config/hypr/lilac
-  - [ ] JSON parser
