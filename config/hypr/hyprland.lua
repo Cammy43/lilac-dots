@@ -311,14 +311,14 @@ hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 -- gaming mode
 hl.bind(mainMod .. " + G", function()
     ll_gameMode = (hl.get_config("animations.enabled") == false);
-
+    gameMode(true)
     if ll_gameMode then -- disables game mode
         hl.exec_cmd("hyprctl reload");
         return;
     end
 
     hl.config({
-        gameMode(true),
+        
         general = {},
 
         animations = {
