@@ -5,13 +5,13 @@
  -- Choose when the battery level is considered low. 
 low_battery_level = 15
 
--- If your device has a battery, set this to true
-battery_installed = true
+-- If you are using a laptop, set this to true
+laptop = true
 
 -- If enabled, gaming mode will switch the monitor config to the one specified in ~/config/hypr/gamingMonitors.lua
 gaming_mode_res_switch = true 
 
--- Pretty self explanitory. Just paste the output of the "whoami" command. Lilac won't work without this.
+-- Just paste the output of the "whoami" command if you don't know your username somehow. Lilac won't work without this.
 username = "cameronv"
 
 default_terminal = "foot"
