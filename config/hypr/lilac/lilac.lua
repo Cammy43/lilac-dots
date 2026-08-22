@@ -81,7 +81,7 @@ local function setupVars()
     hl_desktopSwitchSpeed = desktop_switch_speed;
     basePath = "/home/" .. username .. "/.config/hypr/";
     hl_terminal = "foot";
-
+    hl_isLaptop = laptop;
     writeFile(basePath .. "lilac/kv/lilacPM/lowbatlevel", low_battery_level);
     debugOut("Setting up local variables", "ok");
 end
@@ -91,7 +91,7 @@ function setupGui()
     io.popen("killall qs");
     hl.exec_cmd("qs -c overview");
 
-    --debugOut("STUPID THING:" .. readFile(basePath .. "lilac/kv/setupcomplete"));
+    -- debugOut("STUPID THING:" .. readFile(basePath .. "lilac/kv/setupcomplete"));
     if readFile(basePath .. "lilac/kv/setupcomplete") == "0" then
         sleep(0.5);
         hl.exec_cmd("noctalia");
@@ -109,8 +109,6 @@ function gameMode()
         notify("Gaming Mode enabled");
         hl.exec_cmd("tlpcli performance");
         writeFile(basePath .. "lilac/kv/gamingmode/state", "1");
-
-        
     else
         writeFile(basePath .. "lilac/kv/gamingmode/state", "0");
         notify("Gaming Mode disabled");
@@ -118,7 +116,7 @@ function gameMode()
 end
 
 hl.on("hyprland.start", function()
-    debugOut("Cold start detected!","none");
+    debugOut("Cold start detected!", "none");
     setupComplete = false; -- DO NOT remove this line. EVER. If you are curious, removing it will get the shell stuck in a bootloop at 1 fps.
     writeFile(basePath .. "lilac/kv/setupcomplete", "0");
     debugOut("hyprland.start");
@@ -129,6 +127,5 @@ function startLilac() -- starts essential lilac processes and loads configs
     setupVars();
     kv_reset();
     lilacPM_reset();
-
     debugOut("Initial setup done!");
 end
