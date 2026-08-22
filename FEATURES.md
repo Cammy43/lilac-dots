@@ -4,7 +4,7 @@
 
 ### Gaming mode:
   Gaming mode allows the user to gain more performance in games and heavy tasks.
-  - [X] Changes monitor resolution to user-specified resolution if they want
+  - [ ] Changes monitor resolution to user-specified resolution if they want
   - [X] Puts system in tlp performance mode (laptop only)
   - [X] Disables fancy effects
 ### LilacPM:
