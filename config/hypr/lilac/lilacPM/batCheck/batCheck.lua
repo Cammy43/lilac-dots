@@ -15,7 +15,7 @@ local function runCmd(cmd)
     proc.close();
     return out;
 end
-local function readFile(path) -- simple wrapper function for writing to kv
+local function readFile(path) -- simple wrapper function for reading from kv
     local file = assert(io.open(path, "r"));
     local out = file:read("*all");
     file:close();
