@@ -8,7 +8,7 @@ local function sleep(t)
 end
 
 function debugOut(str, e)
-    if debug ~= true then
+    if debug_mode == false then
         return;
     end
     if e == nil then
@@ -56,10 +56,10 @@ local function writeFile(path, data) -- simple wrapper function for writing to k
 end
 
 local function lilacPM_reset()
-    debugOut("Setting up lilacPM kv", "none");
+    debugOut("Setting up lilacPM", "none");
     io.popen("killall batCheck"); -- use popen so the system waits for the processes to be killed
     hl.exec_cmd(basePath .. "lilac/lilacPM/batCheck " .. username);
-    debugOut("Set up lilacPM kv", "ok");
+    debugOut("Set up lilacPM", "ok");
 end
 
 local function kv_reset()
@@ -97,6 +97,7 @@ function setupGui()
         hl.exec_cmd("noctalia");
         sleep(1);
         writeFile(basePath .. "lilac/kv/setupcomplete", "1");
+        setupComplete = true;
         hl.exec_cmd("hyprctl reload");
     else
         debugOut("Shell is already loaded, Reloading config.");
@@ -105,8 +106,8 @@ function setupGui()
 end
 
 function gameMode(switch)
-    local gmPath = basePath .. "lilac/gamingMode " .. basePath;
-    if gameMode == false then
+    local gmPath = basePath .. "lilac/gamingMode " .. basePath .. " ";
+    if ll_gameMode == false then
         notify("Gaming Mode enabled");
         hl.exec_cmd("tlpcli performance");
         if switch then
@@ -114,9 +115,8 @@ function gameMode(switch)
         end
         writeFile(basePath .. "lilac/kv/gamingmode/state", "1");
     else
-        if switch then
-            io.popen(gmPath .. "1");
-        end
+        io.popen(gmPath .. "1");
+
         writeFile(basePath .. "lilac/kv/gamingmode/state", "0");
         notify("Gaming Mode disabled");
     end
@@ -133,6 +133,8 @@ function startLilac() -- starts essential lilac processes and loads configs
     debugOut("Starting...", "none");
     setupVars();
     kv_reset();
-    lilacPM_reset();
+    if setupComplete == false then
+        lilacPM_reset();
+    end
     debugOut("Initial setup done!");
 end
