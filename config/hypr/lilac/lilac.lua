@@ -91,10 +91,11 @@ function setupGui()
     io.popen("killall qs");
     hl.exec_cmd("qs -c overview");
 
-    debugOut("STUPID THING:" .. readFile(basePath .. "lilac/kv/setupcomplete"));
+    --debugOut("STUPID THING:" .. readFile(basePath .. "lilac/kv/setupcomplete"));
     if readFile(basePath .. "lilac/kv/setupcomplete") == "0" then
-        --sleep(1);
+        sleep(0.5);
         hl.exec_cmd("noctalia");
+        sleep(1);
         writeFile(basePath .. "lilac/kv/setupcomplete", "1");
         hl.exec_cmd("hyprctl reload");
     else
