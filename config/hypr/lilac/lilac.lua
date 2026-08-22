@@ -104,12 +104,19 @@ function setupGui()
     debugOut("Setup shell", "ok");
 end
 
-function gameMode()
+function gameMode(switch)
+    local gmPath = basePath .. "lilac/gamingMode " .. basePath;
     if gameMode == false then
         notify("Gaming Mode enabled");
         hl.exec_cmd("tlpcli performance");
+        if switch then
+            io.popen(gmPath .. "0");
+        end
         writeFile(basePath .. "lilac/kv/gamingmode/state", "1");
     else
+        if switch then
+            io.popen(gmPath .. "1");
+        end
         writeFile(basePath .. "lilac/kv/gamingmode/state", "0");
         notify("Gaming Mode disabled");
     end
