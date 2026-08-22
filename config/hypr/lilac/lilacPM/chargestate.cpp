@@ -42,12 +42,12 @@ int main(int argc, char *argv[])
     }
     if (toInt(argv[1]))
     {
-        error("Charging");
+        notify("Charging");
         charging << "1";
     }
     else
     {
-        error("Not Charging");
+        notify("Not Charging");
         charging << "0";
     }
 
