@@ -27,7 +27,6 @@ void sigintExit(int signum)
 	exit(signum);
 }
 
-
 int main(int argc, char *argv[])
 {
 	if (argc == 1)
@@ -46,11 +45,11 @@ int main(int argc, char *argv[])
 	basePath = "/home/" + username + "/.config/hypr/";
 	string tmp = "/usr/bin/luajit " + basePath + "lilac/lilacPM/batCheck.lua " + username;
 	const char *cmd = tmp.c_str();
-	cout<<cmd<<endl;
+	cout << cmd << endl;
 	while (true)
 	{
 		system(cmd);
-		sleep(5);
+		sleep(2);
 	}
 	return 0;
 }
