@@ -309,7 +309,7 @@ hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 
 -- gaming mode
-hl.bind("SUPER + G", function()
+hl.bind(mainMod .. " + G", function()
     ll_gameMode = (hl.get_config("animations.enabled") == false);
 
     if ll_gameMode then -- disables game mode
@@ -318,7 +318,36 @@ hl.bind("SUPER + G", function()
     end
 
     hl.config({
-        gameMode(),
+        gameMode(true),
+        general = {},
+
+        animations = {
+            enabled = false -- Disable animations
+        },
+
+        -- Disable blur, shadow and window rounding
+        decoration = {
+            shadow = {
+                enabled = false
+            },
+            blur = {
+                enabled = false
+            },
+            rounding = 0
+        }
+    })
+end)
+
+hl.bind(mainMod .. " + SHIFT + G", function()
+    ll_gameMode = (hl.get_config("animations.enabled") == false);
+
+    if ll_gameMode then -- disables game mode
+        hl.exec_cmd("hyprctl reload");
+        return;
+    end
+
+    hl.config({
+        gameMode(false),
         general = {},
 
         animations = {
