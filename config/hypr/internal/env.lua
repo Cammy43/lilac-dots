@@ -9,5 +9,6 @@ hl_menu = ""
 ll_gameMode = "0"
 ll_username = ""
 basePath = "" -- path to the hyprland config folder. Calculated at lilac::lua::startLilac()
+hl_isLaptop = false
 hl_desktopSwitchSpeed = 0
 setupComplete = false;
