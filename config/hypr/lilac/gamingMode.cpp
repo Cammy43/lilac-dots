@@ -3,7 +3,7 @@
 #include <string>
 
 using namespace std;
-
+string basePath = "";
 string inPath = "gamingMonitors.lua";
 string outPath = "internal/monitors.lua";
 string defaultPath = "monitors.lua";
@@ -26,9 +26,9 @@ inline void error(string e)
 
 int main(int argc, char *argv[])
 {
-  if (argc == 1)
+  if (argc < 2)
   {
-    error("Requires at least one argument");
+    error("Requires at least 2 arguments");
     exit(1);
   }
 
@@ -37,10 +37,10 @@ int main(int argc, char *argv[])
     error("Too many arguments");
     exit(1);
   }
-  inPath = argv[1] + inPath;
-  outPath = argv[1] + outPath;
-  defaultPath = argv[1] + default;
-  // outFile << "";
+  basePath = argv[1];
+  inPath =  basePath + inPath;
+  outPath = basePath + outPath;
+  defaultPath = basePath + defaultPath;
 
   string lineIn;
   unsigned int oldFileSize = 0;
