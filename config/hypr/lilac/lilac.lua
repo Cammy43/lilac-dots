@@ -26,7 +26,7 @@ local function error(str)
     debugOut(str, "err");
 end
 
-local function readFile(path) -- simple wrapper function for reading from kv
+function readFile(path) -- simple wrapper function for reading from kv
     if string == nil or path == nil then
         error("readFile(): Not enough arguments");
         return "nil";
@@ -40,7 +40,7 @@ local function readFile(path) -- simple wrapper function for reading from kv
     return out;
 end
 
-local function writeFile(path, data) -- simple wrapper function for writing to kv
+function writeFile(path, data) -- simple wrapper function for writing to kv
     if string == nil or path == nil then
         error("writeFile(): Not enough arguments");
         return "nil";
@@ -58,6 +58,9 @@ end
 local function lilacPM_reset()
     debugOut("Setting up lilacPM", "none");
     io.popen("killall batCheck"); -- use popen so the system waits for the processes to be killed
+    writeFile(basePath .. "lilac/kv/lilacPM/prof_on_charge", power_profile_while_charging);
+    writeFile(basePath .. "lilac/kv/lilacPM/prof_on_bat", power_profile_on_battery);
+    writeFile(basePath .. "lilac/kv/lilacPM/prof_on_low", power_profile_on_low_battery);
     hl.exec_cmd(basePath .. "lilac/lilacPM/batCheck " .. username);
     debugOut("Set up lilacPM", "ok");
 end
@@ -72,6 +75,7 @@ end
 
 local function kv_load()
     debugOut("Setting up key-value", "none");
+    writeFile(basePath .. "lilac/kv/lilacPM/lowbatlevel", tostring(low_battery_level));
     debugOut("Set up key-value", "ok");
 end
 
@@ -82,59 +86,95 @@ local function setupVars()
     basePath = "/home/" .. username .. "/.config/hypr/";
     hl_terminal = "foot";
     hl_isLaptop = laptop;
-    writeFile(basePath .. "lilac/kv/lilacPM/lowbatlevel", low_battery_level);
+    hl_gamingModeRes = gaming_mode_cfg;
+
     debugOut("Setting up local variables", "ok");
 end
 
-function setupGui()
+function setupGui(force)
     debugOut("Setting up shell", "none");
+    debugOut("setupComplete:" .. tostring(setupComplete));
+
     io.popen("killall qs");
+    sleep(0.1);
     hl.exec_cmd("qs -c overview");
 
-    -- debugOut("STUPID THING:" .. readFile(basePath .. "lilac/kv/setupcomplete"));
-    if readFile(basePath .. "lilac/kv/setupcomplete") == "0" then
-        sleep(0.5);
+    if readFile(basePath .. "lilac/kv/setupcomplete") == "0" or force then
+        sleep(0.1);
         hl.exec_cmd("noctalia");
-        sleep(1);
+        sleep(0.2);
         writeFile(basePath .. "lilac/kv/setupcomplete", "1");
         setupComplete = true;
         hl.exec_cmd("hyprctl reload");
     else
-        debugOut("Shell is already loaded, Reloading config.");
+        debugOut("Shell is already loaded, Reloading config.", "warn");
     end
     debugOut("Setup shell", "ok");
 end
 
-function gameMode(switch)
+function gameMode(switch, state)
+    debugOut("lilac::gameMode() called");
     local gmPath = basePath .. "lilac/gamingMode " .. basePath .. " ";
-    if ll_gameMode == false then
-        notify("Gaming Mode enabled");
-        hl.exec_cmd("tlpcli performance");
-        if switch then
-            io.popen(gmPath .. "0");
-        end
-        writeFile(basePath .. "lilac/kv/gamingmode/state", "1");
-    else
-        io.popen(gmPath .. "1");
 
+    if readFile(basePath .. "lilac/kv/gamingmode/state") == "1" then -- disables game mode
+        debugOut("lilac::gameMode() resetting");
         writeFile(basePath .. "lilac/kv/gamingmode/state", "0");
-        notify("Gaming Mode disabled");
-    end
-end
 
-hl.on("hyprland.start", function()
-    debugOut("Cold start detected!", "none");
-    setupComplete = false; -- DO NOT remove this line. EVER. If you are curious, removing it will get the shell stuck in a bootloop at 1 fps.
-    writeFile(basePath .. "lilac/kv/setupcomplete", "0");
-    debugOut("hyprland.start");
-end)
+        setupGui(true);
+        hl_gameMode = false;
+        hl.exec_cmd(gmPath .. "1");
+        notify("Gaming Mode disabled");
+        return;
+    end
+
+    -- if gaming_mode_res_switch == true then
+    -- debugOut("STUPID VARIABLE: " .. hl_gamingModeRes)
+    -- hl.exec_cmd("hyprctl keyword monitor " .. hl_gamingModeRes);
+    -- end
+    if gaming_mode_res_switch then
+        io.popen(gmPath .. "0");
+    else
+        hl.exec_cmd("hyprctl reload");
+    end
+    if gaming_mode_ultra_pro_max then
+        io.popen("killall noctalia"); -- lol
+    end
+    writeFile(basePath .. "lilac/kv/gamingmode/state", "1");
+    hl_gameMode = true;
+    debugOut("lilac::gameMode() exit");
+    notify("Gaming Mode enabled");
+end
 
 function startLilac() -- starts essential lilac processes and loads configs
     debugOut("Starting...", "none");
     setupVars();
-    kv_reset();
-    if setupComplete == false then
+    if readFile(basePath .. "lilac/kv/setupcomplete") == "0" then
+        debugOut("Resetting Game Mode", "none");
+        writeFile(basePath .. "lilac/kv/gamingmode/state", "0");
+        io.popen(basePath .. "lilac/gamingMode " .. basePath .. " 1");
+        debugOut("Reset Game Mode", "ok");
+        setupGui();
+        --        kv_reset();
         lilacPM_reset();
+    else
+        debugOut("Skipping one time setup", "warn");
     end
+    kv_load();
+
     debugOut("Initial setup done!");
 end
+
+hl.on("hyprland.start", function()
+    debugOut("Cold start detected!", "none");
+    setupComplete = false;
+    writeFile(basePath .. "lilac/kv/setupcomplete", "0");
+    coldstart = true;
+    startLilac();
+    coldstart = false
+    debugOut("hyprland.start");
+end)
+setupVars();
+kv_load();
+io.popen("killall qs");
+sleep(0.01);
+hl.exec_cmd("qs -c overview");
