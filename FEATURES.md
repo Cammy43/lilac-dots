@@ -4,7 +4,7 @@
 
 ### Gaming mode:
   Gaming mode allows the user to gain more performance in games and heavy tasks.
-  - [ ] Changes monitor resolution to user-specified resolution if they want
+  - [X] Changes monitor resolution to user-specified resolution if they want
   - [X] Puts system in tlp performance mode (laptop only)
   - [X] Disables fancy effects
 ### LilacPM:
@@ -12,6 +12,7 @@
   change power settings accordingly.
   - [X] Automatically changes power profile if charging
   - [X] Sets power profile to power-saver when the battery percentage goes below a threshold
+  - [ ] Allows user-configurable modes based on laptop state
 
 ### Installer:
   - [ ] Detects package manager
