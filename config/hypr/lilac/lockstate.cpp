@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
     }
     basePath = argv[1];
 
-    std::ofstream locked(basePath + "lilac/kv/lilacPM/isLocked.txt", std::ios::out | std::ios::trunc);
+    std::ofstream locked(basePath + "lilac/kv/lilacPM/lockstate", std::ios::out | std::ios::trunc);
     if (!locked)
     {
         error("File access failed");
