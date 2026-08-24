@@ -1,16 +1,12 @@
-require("internal/monitors")
+require("lilac/lilac");
 
+require("internal/monitors");
 -- include lilac functions and variables
-require("lilac/lilac")
-if ll_gameMode ~= true then
-    startLilac()
-end
 
-require("autostart")
+require("autostart");
 
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
-
 
 hl.config({
     general = {
@@ -28,10 +24,10 @@ hl.config({
         },
 
         -- Set to true to enable resizing windows by clicking and dragging on borders and gaps
-        resize_on_border = false,
+        resize_on_border = true,
 
         -- Please see https://wiki.hypr.land/Configuring/Advanced-and-Cool/Tearing/ before you turn this on
-        allow_tearing = false,
+        allow_tearing = true,
 
         layout = "dwindle"
     },
@@ -53,7 +49,7 @@ hl.config({
 
         blur = {
             enabled = true,
-            size = 4,
+            size = 2,
             passes = 2,
             vibrancy = 0.1696
         }
@@ -256,7 +252,7 @@ hl.config({
 
         follow_mouse = 1,
 
-        sensitivity = 1.0, -- -0 - 1.0, 0 means no modification.
+        sensitivity = 0.5, -- -0 - 1.0, 0 means no modification.
         accel_profile = "flat",
         touchpad = {
             natural_scroll = true,
@@ -310,61 +306,7 @@ hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit")) -- dwindle only
 
 -- gaming mode
 hl.bind(mainMod .. " + G", function()
-    ll_gameMode = (hl.get_config("animations.enabled") == false);
-    gameMode(true)
-    if ll_gameMode then -- disables game mode
-        hl.exec_cmd("hyprctl reload");
-        return;
-    end
-
-    hl.config({
-        
-        general = {},
-
-        animations = {
-            enabled = false -- Disable animations
-        },
-
-        -- Disable blur, shadow and window rounding
-        decoration = {
-            shadow = {
-                enabled = false
-            },
-            blur = {
-                enabled = false
-            },
-            rounding = 0
-        }
-    })
-end)
-
-hl.bind(mainMod .. " + SHIFT + G", function()
-    ll_gameMode = (hl.get_config("animations.enabled") == false);
-
-    if ll_gameMode then -- disables game mode
-        hl.exec_cmd("hyprctl reload");
-        return;
-    end
-
-    hl.config({
-        gameMode(false),
-        general = {},
-
-        animations = {
-            enabled = false -- Disable animations
-        },
-
-        -- Disable blur, shadow and window rounding
-        decoration = {
-            shadow = {
-                enabled = false
-            },
-            blur = {
-                enabled = false
-            },
-            rounding = 0
-        }
-    })
+    gameMode();
 end)
 
 -- Move focus with mainMod + arrow keys
@@ -392,7 +334,7 @@ for i = 1, 10 do
         workspace = i
     }))
 end
--- FUCKING QUICKSHELL!!!! WE HAVE QUICKSHELL OVERVIEW OH MY GODD
+-- toggle quickshell desktop overview thing
 hl.bind(mainMod .. "+ A", hl.dsp.exec_cmd("qs -c overview ipc call overview toggle"), {
     locked = true
 })
@@ -523,13 +465,6 @@ hl.window_rule({
     no_focus = true
 })
 
--- Layer rules also return a handle.
--- local overlayLayerRule = hl.layer_rule({
---     name  = "no-anim-overlay",
---     match = { namespace = "^my-overlay$" },
---     no_anim = true,
--- })
--- overlayLayerRule:set_enabled(false)
 
 -- Hyprland-run windowrule
 hl.window_rule({
@@ -551,7 +486,7 @@ hl.window_rule({
 -- For Noctalia Color templates
 
 -- Start lock screen
-hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("echo hi"), {
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("notify-send 'Not implemented' -a 'lilac::gesture::lock():"), { -- todo
     locked = true
 })
 
@@ -566,6 +501,24 @@ if hl_isLaptop then
     })
 end
 -- after all the binds are applied setup everything else
-setupGui();
 
-require("noctalia").apply_theme()
+if readFile(basePath .. "lilac/kv/gamingmode/state") == "1" then
+    hl.config({
+        general = {},
+
+        animations = {
+            enabled = false
+        },
+
+        decoration = {
+            shadow = {
+                enabled = false
+            },
+            blur = {
+                enabled = false
+            },
+            rounding = 0
+        }
+    })
+end
+
