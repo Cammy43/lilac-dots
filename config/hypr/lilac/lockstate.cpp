@@ -162,7 +162,7 @@ int main(int argc, char *argv[])
         exit(1);
     }
     basePath = argv[1];
-    std::string filename = basePath + "/lilac/kv/lilacPM/lockstate";
+    std::string filename = basePath + "lilac/kv/lilacPM/lockstate";
     std::ofstream locked(filename, std::ios::out | std::ios::trunc);
     if (!locked)
     {
