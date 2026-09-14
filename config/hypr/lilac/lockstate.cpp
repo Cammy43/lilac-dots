@@ -70,11 +70,11 @@ int main(int argc, char *argv[])
         exit(1);
     }
     basePath = argv[1];
-
-    std::ofstream locked(basePath + "lilac/kv/lilacPM/lockstate", std::ios::out | std::ios::trunc);
+    std::string filename = basePath + "/lilac/kv/lilacPM/lockstate";
+    std::ofstream locked(filename, std::ios::out | std::ios::trunc);
     if (!locked)
     {
-        error("File access failed");
+        error("Cannot write to file '" + filename + "'!!!!!!!!!!!!!!!!!!!!!!!!");
         return 1;
     }
     if (toInt(argv[2]))
