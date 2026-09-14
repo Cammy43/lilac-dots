@@ -74,7 +74,7 @@ int main(int argc, char *argv[])
     std::ofstream locked(filename, std::ios::out | std::ios::trunc);
     if (!locked)
     {
-        error("Cannot write to file '" + filename + "'!!!!!!!!!!!!!!!!!!!!!!!!");
+        error("Cannot write to file '" + filename + "'!");
         return 1;
     }
     if (toInt(argv[2]))
