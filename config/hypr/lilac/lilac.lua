@@ -177,4 +177,5 @@ setupVars();
 kv_load();
 io.popen("killall qs");
 sleep(0.01);
+hl.exec_cmd("hypridle");
 hl.exec_cmd("qs -c overview");
