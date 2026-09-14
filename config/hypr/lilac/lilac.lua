@@ -166,6 +166,7 @@ end
 
 hl.on("hyprland.start", function()
     debugOut("Cold start detected!", "none");
+    io.popen("tlpctl performance");
     setupComplete = false;
     writeFile(basePath .. "lilac/kv/setupcomplete", "0");
     coldstart = true;
