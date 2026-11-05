@@ -1,5 +1,6 @@
 #!/bin/bash
 echo "\nInstalling Lilac\n"
+buildDir=${pwd} #stores the current directory. this directory isnt the one that lilac will be compiled in. this is where the lilac-build folder will go.
 cd ~
 mkdir .config/hypr
 cd .config/hypr
@@ -10,9 +11,10 @@ sudo pacman -S --needed hyprland xdg-desktop-portal-hyprland hypridle lua gcc na
 
 #clone the lilac repo and copy the config folders
 echo "[INFO]: Downloading files"
+cd $buildDir #go back to the directory where this script started
 mkdir lilac-build
 cd lilac-build
-buildDir=${pwd}
+buildDir=${pwd} # store the ACTUAL build directory
 git clone https://github.com/Cammy43/lilac-dots/ > /dev/null
 cd lilac-dots
 
