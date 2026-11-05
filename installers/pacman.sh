@@ -49,6 +49,7 @@ echo "[OK]: Compiled binaries"
 echo "[INFO]: Copying files"
 cd $buildDir
 
+echo ${pwd}
 cd lilac-dots/config/hypr
 cp *.lua ~/.config/hypr
 
