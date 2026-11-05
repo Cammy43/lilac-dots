@@ -5,16 +5,16 @@ cd ~
 mkdir .config/hypr
 cd .config/hypr
 configDir=${pwd}
-
-yay -S fastfetch  --noconfirm
-sudo pacman -S --needed hyprland xdg-desktop-portal-hyprland hypridle lua gcc nano btop noctalia flatpak quickshell figlet --noconfirm
-
-#clone the lilac repo and copy the config folders
-echo "[INFO]: Downloading files"
 cd $buildDir #go back to the directory where this script started
 mkdir lilac-build
 cd lilac-build
 buildDir=${pwd} # store the ACTUAL build directory
+
+echo "[INFO]: Downloading files"
+yay -S fastfetch  --noconfirm
+sudo pacman -S --needed hyprland xdg-desktop-portal-hyprland hypridle lua gcc nano btop noctalia flatpak quickshell figlet --noconfirm
+
+#clone the lilac repo and copy the config folders
 git clone https://github.com/Cammy43/lilac-dots/ > /dev/null
 cd lilac-dots
 
