@@ -7,6 +7,7 @@ mkdir .config/hypr
 cd .config/hypr
 configDir=${pwd}
 cd $buildDir #go back to the directory where this script started
+
 sudo rm -rf lilac-build
 mkdir lilac-build
 cd lilac-build
@@ -62,5 +63,5 @@ cp internal/* ~/.config/hypr/internal -r
 
 echo "[OK]: Copied files"
 
-#sudo rm -rf $buildDir #praying this doesnt break someones computer
+sudo rm -rf $buildDir #praying this doesnt break someones computer
 #todo: copy noctalia and quickshell configs
