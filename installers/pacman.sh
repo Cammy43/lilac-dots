@@ -53,7 +53,7 @@ echo $(pwd)
 cd lilac-dots/config/hypr
 cp *.lua ~/.config/hypr
 
-cd lilacPM
+cd lilac/lilacPM
 cp *.lua ~/.config/hypr
 
 cd ..
@@ -67,3 +67,5 @@ echo "[OK]: Copied files"
 cd $homeDir
 sudo rm -rf $buildDir #praying this doesnt break someones computer
 #todo: copy noctalia and quickshell configs
+
+figlet Install complete!
