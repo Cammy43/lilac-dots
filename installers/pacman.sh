@@ -1,12 +1,12 @@
 #!/bin/bash
 echo "\nInstalling Lilac\n"
 
-buildDir=${pwd} #stores the current directory. this directory isnt the one that lilac will be compiled in. this is where the lilac-build folder will go.
+homeDir=${pwd}
 cd ~
 mkdir .config/hypr
 cd .config/hypr
 configDir=${pwd}
-cd $buildDir #go back to the directory where this script started
+cd $homeDir
 
 sudo rm -rf lilac-build
 mkdir lilac-build
@@ -63,5 +63,6 @@ cp internal/* ~/.config/hypr/internal -r
 
 echo "[OK]: Copied files"
 
+cd $homeDir
 sudo rm -rf $buildDir #praying this doesnt break someones computer
 #todo: copy noctalia and quickshell configs
