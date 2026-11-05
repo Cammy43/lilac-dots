@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 echo "\nInstalling Lilac\n"
 cd ~
 mkdir .config/hypr
@@ -58,5 +58,5 @@ cp internal/* ~/.config/hypr/internal -r
 
 echo "[OK]: Copied files"
 
-sudo rm -rf $buildDir #praying this doesnt break someones computer
+#sudo rm -rf $buildDir #praying this doesnt break someones computer
 #todo: copy noctalia and quickshell configs
