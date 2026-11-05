@@ -61,6 +61,8 @@ local function lilacPM_reset()
     writeFile(basePath .. "lilac/kv/lilacPM/prof_on_charge", power_profile_while_charging);
     writeFile(basePath .. "lilac/kv/lilacPM/prof_on_bat", power_profile_on_battery);
     writeFile(basePath .. "lilac/kv/lilacPM/prof_on_low", power_profile_on_low_battery);
+    writeFile(basePath .. "lilac/kv/lilacPM/lowbatlevel", tostring(low_battery_level));
+    writeFile(basePath .. "lilac/kv/lilacPM/lockstate", tostring(0));
     hl.exec_cmd(basePath .. "lilac/lilacPM/batCheck " .. username);
     debugOut("Set up lilacPM", "ok");
 end
@@ -75,7 +77,7 @@ end
 
 local function kv_load()
     debugOut("Setting up key-value", "none");
-    writeFile(basePath .. "lilac/kv/lilacPM/lowbatlevel", tostring(low_battery_level));
+    --writeFile(basePath .. "lilac/kv/lilacPM/lowbatlevel", );
     debugOut("Set up key-value", "ok");
 end
 
@@ -87,6 +89,7 @@ local function setupVars()
     hl_terminal = "foot";
     hl_isLaptop = laptop;
     hl_gamingModeRes = gaming_mode_cfg;
+    hl_zeroscaling = not xwayland_scaling;
 
     debugOut("Setting up local variables", "ok");
 end
@@ -96,6 +99,7 @@ function setupGui(force)
     debugOut("setupComplete:" .. tostring(setupComplete));
 
     io.popen("killall qs");
+    
     sleep(0.1);
     hl.exec_cmd("qs -c overview");
 
@@ -151,10 +155,11 @@ function startLilac() -- starts essential lilac processes and loads configs
     if readFile(basePath .. "lilac/kv/setupcomplete") == "0" then
         debugOut("Resetting Game Mode", "none");
         writeFile(basePath .. "lilac/kv/gamingmode/state", "0");
+        -- writeFile(basePath .. "lilac/kv/lilacPM/charging.txt", tostring(0));
         io.popen(basePath .. "lilac/gamingMode " .. basePath .. " 1");
         debugOut("Reset Game Mode", "ok");
         setupGui();
-        --        kv_reset();
+        --        kv_reset(); --why is this commented lol
         lilacPM_reset();
     else
         debugOut("Skipping one time setup", "warn");
@@ -166,7 +171,8 @@ end
 
 hl.on("hyprland.start", function()
     debugOut("Cold start detected!", "none");
-    io.popen("tlpctl performance");
+    -- io.popen("tlpctl performance");
+    -- io.popen("");
     setupComplete = false;
     writeFile(basePath .. "lilac/kv/setupcomplete", "0");
     coldstart = true;
