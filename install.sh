@@ -1,5 +1,5 @@
 #!/bin/bash
-#shits still broken lol
+
 tput setaf 1
 echo "The installation will begin in: 5 seconds. BACK UP YOUR .config DIRECTORY BEFORE CONTINUING. Press CTRL + C to cancel"
 sleep 1
@@ -37,29 +37,35 @@ if [ "$distroName" = "Debian GNU/Linux" ]; then
     packageManager="apt"
     installCmd="sudo apt install -y"
     depInstall="sudo apt install -y git curl"
+    updateCmd="sudo apt update && sudo apt upgrade -y"
     distroDir="$HOME/$Distro"
     
     elif [ "$distroName" = "Ubuntu" ]; then
     packageManager="apt"
     installCmd="sudo apt install -y"
     depInstall="sudo apt install -y git curl"
+    updateCmd="sudo apt update && sudo apt upgrade -y"
     
     elif command -v pacman &> /dev/null; then
     packageManager="pacman"
     installCmd="sudo pacman -S --noconfirm"
     depInstall="sudo pacman -S git curl --noconfirm"
+    updateCmd="sudo pacman -Syu --noconfirm"
     distroDir="$HOME/$Distro"
     
     elif command -v dnf &> /dev/null; then
     packageManager="dnf"
     installCmd="sudo dnf install -y"
     depInstall="sudo dnf install -y git curl"
+    updateCmd="sudo dnf upgrade"
     distroDir="$HOME/$Distro"
     
     elif command -v zypper &> /dev/null; then
     packageManager="zypper"
     installCmd="sudo zypper install -y"
     depInstall="sudo zypper install -y git curl"
+    updateCmd="sudo zypper up"
+    
     distroDir="$HOME/$Distro"
     
     elif [ "$distroName" = "NixOS" ]; then
@@ -83,6 +89,9 @@ fi
 
 curl https://raw.githubusercontent.com/Cammy43/lilac-dots/refs/heads/main/installers/epic%20ascii%20logo #cool logo
 
+echo "Updating packages"
+
+bash -c "$updateCmd"
 #get the appropriate installer
 echo "Installing dependancies"
 
