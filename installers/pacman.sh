@@ -15,7 +15,7 @@ buildDir=$(pwd) # store the ACTUAL build directory
 
 echo "[INFO]: Downloading files"
 yay -S fastfetch  --noconfirm
-sudo pacman -S --needed hyprland xdg-desktop-portal-hyprland hypridle lua gcc nano btop noctalia flatpak quickshell figlet --noconfirm
+sudo pacman -S --needed hyprland xdg-desktop-portal-hyprland hypridle hyprlock lua gcc foot nano btop noctalia flatpak quickshell figlet --noconfirm
 
 #clone the lilac repo and copy the config folders
 git clone https://github.com/Cammy43/lilac-dots/ > /dev/null
@@ -48,15 +48,17 @@ echo "[OK]: Compiled binaries"
 
 echo "[INFO]: Copying files"
 cd $buildDir
-
-echo $(pwd)
 cd lilac-dots/config/hypr
 
 cp *.lua ~/.config/hypr
 cp lilac/*.lua ~/.config/hypr/lilac
 cp lilac/lilacPM/*.lua ~/.config/hypr/lilac
-cp lilac/kv/* ~/.config/hypr/kv -r
+cp lilac/kv/* ~/.config/hypr/lilac/kv -r
 cp internal/* ~/.config/hypr/internal -r
+
+cd $buildDir
+rm -rf lilac-dots/config/hypr
+cp lilac-dots/config/* ~/.config -r
 
 echo "[OK]: Copied files"
 
