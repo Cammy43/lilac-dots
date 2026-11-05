@@ -1,17 +1,17 @@
 #!/bin/bash
 echo "\nInstalling Lilac\n"
 
-homeDir=${pwd}
+homeDir=$(pwd)
 cd ~
 mkdir .config/hypr
 cd .config/hypr
-configDir=${pwd}
+configDir=$(pwd)
 cd $homeDir
 
 sudo rm -rf lilac-build
 mkdir lilac-build
 cd lilac-build
-buildDir=${pwd} # store the ACTUAL build directory
+buildDir=$(pwd) # store the ACTUAL build directory
 
 echo "[INFO]: Downloading files"
 yay -S fastfetch  --noconfirm
@@ -49,7 +49,7 @@ echo "[OK]: Compiled binaries"
 echo "[INFO]: Copying files"
 cd $buildDir
 
-echo ${pwd}
+echo $(pwd)
 cd lilac-dots/config/hypr
 cp *.lua ~/.config/hypr
 
