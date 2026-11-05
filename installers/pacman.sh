@@ -6,6 +6,7 @@ mkdir .config/hypr
 cd .config/hypr
 configDir=${pwd}
 cd $buildDir #go back to the directory where this script started
+rm -rf lilac-build
 mkdir lilac-build
 cd lilac-build
 buildDir=${pwd} # store the ACTUAL build directory
