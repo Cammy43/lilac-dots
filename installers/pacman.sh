@@ -1,12 +1,13 @@
 #!/bin/bash
 echo "\nInstalling Lilac\n"
+
 buildDir=${pwd} #stores the current directory. this directory isnt the one that lilac will be compiled in. this is where the lilac-build folder will go.
 cd ~
 mkdir .config/hypr
 cd .config/hypr
 configDir=${pwd}
 cd $buildDir #go back to the directory where this script started
-rm -rf lilac-build
+sudo rm -rf lilac-build
 mkdir lilac-build
 cd lilac-build
 buildDir=${pwd} # store the ACTUAL build directory
