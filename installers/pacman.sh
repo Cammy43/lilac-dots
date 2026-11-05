@@ -51,15 +51,11 @@ cd $buildDir
 
 echo $(pwd)
 cd lilac-dots/config/hypr
+
 cp *.lua ~/.config/hypr
-
-cd lilac/lilacPM
-cp *.lua ~/.config/hypr
-
-cd ..
-cp kv/* ~/.config/hypr/kv -r
-
-cd ..
+cp lilac/*.lua ~/.config/hypr/lilac
+cp lilac/lilacPM/*.lua ~/.config/hypr/lilac
+cp lilac/kv/* ~/.config/hypr/kv -r
 cp internal/* ~/.config/hypr/internal -r
 
 echo "[OK]: Copied files"
