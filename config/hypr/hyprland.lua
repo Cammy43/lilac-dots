@@ -1,7 +1,7 @@
 require("lilac/lilac");
 
 require("internal/monitors");
--- include lilac functions and variables
+-- include other config files
 
 require("autostart");
 
@@ -9,12 +9,13 @@ hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 
 hl.config({
+    -- unscale Xwayland
+    xwayland = {force_zero_scaling = hl_zeroscaling},
     general = {
         gaps_in = 5,
         gaps_out = 5,
 
         border_size = 3,
-
         col = {
             active_border = {
                 colors = {"rgba(33ccffee)", "rgba(00ff99ee)"},
@@ -222,7 +223,8 @@ hl.config({
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Scrolling-Layout/ for more
 hl.config({
-    scrolling = {
+    
+scrolling = {
         fullscreen_on_one_column = true
     }
 })
@@ -233,7 +235,7 @@ hl.config({
 
 hl.config({
     misc = {
-        force_default_wallpaper = -1, -- Set to 0 or 1 to disable the anime mascot wallpapers
+        force_default_wallpaper = 0, -- Set to 0 or 1 to disable the anime mascot wallpapers
         disable_hyprland_logo = false -- If true disables the random hyprland logo / anime girl background. :(
     }
 })
@@ -255,6 +257,7 @@ hl.config({
         sensitivity = 0.5, -- -0 - 1.0, 0 means no modification.
         accel_profile = "flat",
         touchpad = {
+            scroll_factor = 0.3;
             natural_scroll = true,
             disable_while_typing = false
         }
@@ -336,6 +339,12 @@ for i = 1, 10 do
 end
 -- toggle quickshell desktop overview thing
 hl.bind(mainMod .. "+ A", hl.dsp.exec_cmd("qs -c overview ipc call overview toggle"), {
+    locked = true
+})
+hl.bind(mainMod .. "+ S", hl.dsp.exec_cmd("hyprshot -zm region"), {
+    locked = true
+})
+hl.bind(mainMod .. "+ D", hl.dsp.exec_cmd("noctalia msg panel-toggle launcher"), {
     locked = true
 })
 -- Example special workspace (scratchpad)
@@ -476,13 +485,14 @@ hl.window_rule({
     move = "20 monitor_h-120",
     float = true
 })
+if default_window_state == 1 then
 hl.window_rule({
     match = {
         class = "^(.*)$"
     },
     float = true
 })
-
+end;
 -- For Noctalia Color templates
 
 -- Start lock screen
