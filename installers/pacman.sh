@@ -58,4 +58,5 @@ cp internal/* ~/.config/hypr/internal -r
 
 echo "[OK]: Copied files"
 
+sudo rm -rf $buildDir #praying this doesnt break someones computer
 #todo: copy noctalia and quickshell configs
