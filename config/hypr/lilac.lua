@@ -2,7 +2,7 @@
 ---- CONFIGURE LILAC ----
 -------------------------
 
- -- Choose when the battery level is considered low. 
+-- Choose when the battery level is considered low. 
 low_battery_level = 15
 power_profile_while_charging = "performance"
 power_profile_on_battery = "balanced"
@@ -13,9 +13,14 @@ laptop = true
 -- If enabled, gaming mode will switch the monitor config to the one specified in ~/config/hypr/gamingMonitors.lua
 gaming_mode_res_switch = true
 -- If this is enabled noctalia and other fancy features will be disabled for maximum speed
-gaming_mode_ultra_pro_max = false
+gaming_mode_ultra_pro_max = true
+-- If this is enabled X11 apps will be scaled. This in most cases will make them pixelated.
+xwayland_scaling = false
 -- Just paste the output of the "whoami" command if you don't know your username somehow. Lilac won't work without this.
 username = "user"
+
+-- If set to 1, newly opened windows will be not be tiled automatically.
+default_window_state = 0
 
 default_terminal = "foot"
 default_file_manager = "thunar"
