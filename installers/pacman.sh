@@ -3,7 +3,7 @@ echo "\nInstalling Lilac\n"
 cd ~
 mkdir .config/hypr
 cd .config/hypr
-configDir = ${pwd}
+configDir=${pwd}
 
 yay -S fastfetch  --noconfirm
 sudo pacman -S --needed hyprland xdg-desktop-portal-hyprland hypridle lua gcc nano btop noctalia flatpak quickshell figlet --noconfirm
@@ -12,7 +12,7 @@ sudo pacman -S --needed hyprland xdg-desktop-portal-hyprland hypridle lua gcc na
 echo "[INFO]: Downloading files"
 mkdir lilac-build
 cd lilac-build
-buildDir = ${pwd}
+buildDir=${pwd}
 git clone https://github.com/Cammy43/lilac-dots/ > /dev/null
 cd lilac-dots
 
