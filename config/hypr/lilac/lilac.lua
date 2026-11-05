@@ -82,7 +82,7 @@ local function kv_load()
 end
 
 local function setupVars()
-    debugOut("Set up local variables", "none");
+    debugOut("Setting up local variables", "none");
     ll_username = username;
     hl_desktopSwitchSpeed = desktop_switch_speed;
     basePath = "/home/" .. username .. "/.config/hypr/";
@@ -91,7 +91,7 @@ local function setupVars()
     hl_gamingModeRes = gaming_mode_cfg;
     hl_zeroscaling = not xwayland_scaling;
 
-    debugOut("Setting up local variables", "ok");
+    debugOut("Set up local variables", "ok");
 end
 
 function setupGui(force)
@@ -151,7 +151,6 @@ end
 
 function startLilac() -- starts essential lilac processes and loads configs
     debugOut("Starting...", "none");
-    setupVars();
     if readFile(basePath .. "lilac/kv/setupcomplete") == "0" then
         debugOut("Resetting Game Mode", "none");
         writeFile(basePath .. "lilac/kv/gamingmode/state", "0");
@@ -169,8 +168,10 @@ function startLilac() -- starts essential lilac processes and loads configs
     debugOut("Initial setup done!");
 end
 
+setupVars();
 hl.on("hyprland.start", function()
     debugOut("Cold start detected!", "none");
+    hl.exec_cmd(basePath .. "lilac/lilacgui 0");
     -- io.popen("tlpctl performance");
     -- io.popen("");
     setupComplete = false;
@@ -180,9 +181,10 @@ hl.on("hyprland.start", function()
     coldstart = false
     debugOut("hyprland.start");
 end)
-setupVars();
+
 kv_load();
 io.popen("killall qs");
-sleep(0.01);
+-- sleep(0.01);
 hl.exec_cmd("hypridle");
 hl.exec_cmd("qs -c overview");
+--io.popen("kill -15 $(pidof lilacgui)");
