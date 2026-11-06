@@ -150,6 +150,8 @@ cd $buildDir
 cd lilac-dots/config/hypr
 
 cp *.lua ~/.config/hypr
+cp hyprlock.conf ~/.config/hypr
+
 cp lilac/*.lua ~/.config/hypr/lilac
 cp lilac/lilacPM/*.lua ~/.config/hypr/lilac
 cp lilac/kv/* ~/.config/hypr/lilac/kv -r
