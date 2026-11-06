@@ -83,10 +83,11 @@ end
 
 local function setupVars()
     debugOut("Setting up local variables", "none");
-    ll_username = username;
+    l_username = username;
     hl_desktopSwitchSpeed = desktop_switch_speed;
     basePath = "/home/" .. username .. "/.config/hypr/";
-    hl_terminal = "foot";
+    hl_terminal = default_terminal;
+    hl_fileManager = default_file_manager;
     hl_isLaptop = laptop;
     hl_gamingModeRes = gaming_mode_cfg;
     hl_zeroscaling = not xwayland_scaling;
