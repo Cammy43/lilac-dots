@@ -99,7 +99,7 @@ function setupGui(force)
     debugOut("setupComplete:" .. tostring(setupComplete));
 
     io.popen("killall qs");
-    sleep(0.1);
+    sleep(0.01);
     hl.exec_cmd("qs -c overview");
 
     if readFile(basePath .. "lilac/kv/setupcomplete") == "0" or force then
