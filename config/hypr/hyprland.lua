@@ -185,8 +185,8 @@ hl.animation({
     bezier = "quick",
     style = "slide"
 })
--- hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = desktopSwitchSpeed, bezier = "quick", style = "slide" })
--- hl.animation({ leaf = "workspacesOut", enabled = true,  speed = desktopSwitchSpeed, bezier = "quick", style = "slide" })
+ hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = hl_desktopSwitchSpeed, bezier = "quick", style = "slide" })
+ hl.animation({ leaf = "workspacesOut", enabled = true,  speed = hl_desktopSwitchSpeed, bezier = "quick", style = "slide" })
 hl.animation({
     leaf = "zoomFactor",
     enabled = true,
