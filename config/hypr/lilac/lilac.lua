@@ -157,7 +157,9 @@ function startLilac() -- starts essential lilac processes and loads configs
         debugOut("Reset Game Mode", "ok");
         setupGui();
         kv_reset();
-        lilacPM_reset();
+        if laptop then 
+            lilacPM_reset();
+        end
     else
         debugOut("Skipping one time setup", "warn");
     end
@@ -180,6 +182,7 @@ hl.on("hyprland.start", function()
 end)
 
 kv_load();
+
 io.popen("killall qs");
 sleep(0.01);
 hl.exec_cmd("hypridle");
