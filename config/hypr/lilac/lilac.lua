@@ -99,12 +99,10 @@ function setupGui(force)
     debugOut("setupComplete:" .. tostring(setupComplete));
 
     io.popen("killall qs");
-    
     sleep(0.1);
     hl.exec_cmd("qs -c overview");
 
     if readFile(basePath .. "lilac/kv/setupcomplete") == "0" or force then
-        sleep(0.1);
         hl.exec_cmd("noctalia");
         sleep(0.2);
         writeFile(basePath .. "lilac/kv/setupcomplete", "1");
@@ -182,7 +180,6 @@ end)
 
 kv_load();
 io.popen("killall qs");
--- sleep(0.01);
+sleep(0.01);
 hl.exec_cmd("hypridle");
 hl.exec_cmd("qs -c overview");
---io.popen("kill -15 $(pidof lilacgui)");
