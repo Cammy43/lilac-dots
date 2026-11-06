@@ -1,6 +1,11 @@
 require("lilac/lilac");
 
+if gaming_mode_res_switch then
 require("internal/monitors");
+else
+    require("monitors");
+end
+
 -- include other config files
 
 require("autostart");
@@ -236,7 +241,7 @@ scrolling = {
 hl.config({
     misc = {
         force_default_wallpaper = 0, -- Set to 0 or 1 to disable the anime mascot wallpapers
-        disable_hyprland_logo = false -- If true disables the random hyprland logo / anime girl background. :(
+        disable_hyprland_logo = true -- If true disables the random hyprland logo / anime girl background. :(
     }
 })
 
@@ -457,7 +462,7 @@ local suppressMaximizeRule = hl.window_rule({
 
     suppress_event = "maximize"
 })
--- suppressMaximizeRule:set_enabled(false)
+suppressMaximizeRule:set_enabled(false)
 
 hl.window_rule({
     -- Fix some dragging issues with XWayland
