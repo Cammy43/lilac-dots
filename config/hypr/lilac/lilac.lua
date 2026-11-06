@@ -154,16 +154,14 @@ function startLilac() -- starts essential lilac processes and loads configs
     if readFile(basePath .. "lilac/kv/setupcomplete") == "0" then
         debugOut("Resetting Game Mode", "none");
         writeFile(basePath .. "lilac/kv/gamingmode/state", "0");
-        -- writeFile(basePath .. "lilac/kv/lilacPM/charging.txt", tostring(0));
         io.popen(basePath .. "lilac/gamingMode " .. basePath .. " 1");
         debugOut("Reset Game Mode", "ok");
         setupGui();
-        --        kv_reset(); --why is this commented lol
+        kv_reset();
         lilacPM_reset();
     else
         debugOut("Skipping one time setup", "warn");
     end
-    kv_load();
 
     debugOut("Initial setup done!");
 end
