@@ -145,9 +145,12 @@ g++ chargeState.cpp -O3 -march=native -o ~/.config/hypr/lilac/lilacPM/chargeStat
 rm chargeState.cpp
 echo "[OK]: Compiled binaries"
 
+#copy everything else
 echo "[INFO]: Copying files"
 cd $buildDir
 cd lilac-dots/config/hypr
+
+cp wallpapers ~/.config/hypr -r
 
 cp *.lua ~/.config/hypr
 cp hyprlock.conf ~/.config/hypr
