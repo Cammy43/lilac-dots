@@ -1,7 +1,7 @@
 #!/bin/bash
 
 tput setaf 1
-echo "The installation will begin in: 5 seconds. BACK UP YOUR .config DIRECTORY BEFORE CONTINUING. Press CTRL + C to cancel"
+echo "The installation will begin in 5 seconds. BACK UP YOUR .config DIRECTORY BEFORE CONTINUING. Press CTRL + C to cancel"
 sleep 1
 echo " \n"
 
