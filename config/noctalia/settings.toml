@@ -391,7 +391,7 @@ enabled = [ "noctalia/bongocat" ]
 
 [shell]
 app_icon_color = "primary"
-avatar_path = "/home/cameronv/wallpapers/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg"
+avatar_path = "~/.config/hypr/wallpapers/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg"
 corner_radius_scale = 2.0
 font_family = "Adwaita Sans"
 password_style = "random"
@@ -480,18 +480,18 @@ wallpaper_scheme = "vibrant"
     enable_community_templates = false
 
 [wallpaper]
-directory = "/home/cameronv/wallpapers"
+directory = "~/.config/hypr/wallpapers"
 edge_smoothness = 0.0
 transition_on_startup = true
 
     [wallpaper.default]
-    path = "/home/cameronv/wallpapers/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg"
+    path = "~/.config/hypr/wallpapers/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg"
 
     [wallpaper.last]
-    path = "/home/cameronv/wallpapers/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg"
+    path = "~/.config/hypr/wallpapers/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/cameronv/wallpapers/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg"
+    path = "~/.config/hypr/wallpapers/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg"
 
 [widget.cat]
 audio_spectrum = true
