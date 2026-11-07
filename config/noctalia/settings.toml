@@ -3,9 +3,6 @@ config_version = 16
 [accessibility]
 ui_scale = 1.2000000104308128
 
-[audio]
-enable_sounds = true
-
 [bar]
 order = [ "left", "controlpanel" ]
 
@@ -20,12 +17,12 @@ order = [ "left", "controlpanel" ]
     capsule_opacity = 0.0
     capsule_padding = 2.0
     capsule_thickness = 0.74999998696148396
-    center = [ "cpu", "ram" ]
-    end = [ "caffeine", "wallpaper", "notifications", "volume", "brightness", "bluetooth", "network", "battery", "session" ]
+    center = []
+    end = [ "group:g1", "caffeine", "wallpaper", "notifications" ]
     font_family = "JetBrains Mono ExtraBold"
     font_scale = 0.79999998956918716
     margin_edge = 4
-    margin_ends = 300
+    margin_ends = 480
     margin_opposite_edge = 100
     padding = 8
     panel_overlap = 0
@@ -34,12 +31,25 @@ order = [ "left", "controlpanel" ]
     scale = 1.4000000134110451
     show_on_workspace_switch = false
     smart_auto_hide = true
-    start = [ "media", "cat" ]
+    start = [ "media", "cat", "audio_visualizer" ]
     thickness = 45
     widget_spacing = 10
 
         [bar.controlpanel.dead_zone.actions]
         right = "none"
+
+        [[bar.controlpanel.capsule_group]]
+        accordion = true
+        accordion_direction = "end"
+        border = "primary_container"
+        border_width = 0.0
+        enabled = true
+        fill = "surface_container"
+        foreground = "primary"
+        id = "g1"
+        members = [ "cpu", "ram" ]
+        opacity = 0.0
+        padding = 2.0
 
     [bar.left]
     background_opacity = 0.44999998994171619
@@ -51,8 +61,9 @@ order = [ "left", "controlpanel" ]
     capsule_opacity = 0.0
     capsule_padding = 8.0
     capsule_thickness = 0.74999998696148396
+    center = [ "group:g2" ]
     color = "primary"
-    end = [ "tray" ]
+    end = [ "tray", "group:g1", "network", "bluetooth", "battery", "session" ]
     font_family = "JetBrains Mono NL ExtraBold"
     font_weight = 800
     margin_ends = 0
@@ -61,10 +72,37 @@ order = [ "left", "controlpanel" ]
     radius = 0
     radius_bottom_right = 80
     radius_top_right = 80
+    scale = 1.2500000111758709
     shadow = false
     start = [ "launcher", "workspaces" ]
     thickness = 50
     widget_spacing = 8
+
+        [[bar.left.capsule_group]]
+        accordion = true
+        accordion_direction = "start"
+        border = "secondary"
+        border_width = 0.0
+        enabled = true
+        fill = "surface_container"
+        foreground = "secondary"
+        id = "g1"
+        members = [ "brightness", "volume" ]
+        opacity = 0.0
+        padding = 0.0
+
+        [[bar.left.capsule_group]]
+        accordion = true
+        accordion_direction = "end"
+        border = "secondary"
+        border_width = 0.0
+        enabled = true
+        fill = "surface_container"
+        foreground = "secondary"
+        id = "g2"
+        members = [ "clock", "date" ]
+        opacity = 0.0
+        padding = 8.0
 
 [battery]
 warning_threshold = 0
@@ -126,13 +164,25 @@ inactive_opacity = 0.89999997988343239
 inactive_scale = 1.0
 launcher_position = "start"
 magnification_scale = 2.0
-pinned = []
+pinned = [
+    "zen",
+    "org.prismlauncher.PrismLauncher",
+    "rustdesk",
+    "github-desktop",
+    "discord",
+    "org.godotengine.Godot",
+    "steam",
+    "com.valvesoftware.SteamLink",
+    "com.visualstudio.code",
+    "arduino-ide-v2",
+    "org.vinegarhq.Sober"
+]
 reserve_space = false
 show_dots = true
 
 [hooks]
-battery_discharging = "~/.config/hypr/lilac/lilacPM/chargeState 0"
-battery_plugged = "~/.config/hypr/lilac/lilacPM/chargeState 1"
+battery_discharging = "/home/cameronv/.config/hypr/lilac/lilacPM/chargeState 0"
+battery_plugged = "/home/cameronv/.config/hypr/lilac/lilacPM/chargeState 1"
 started = "notify-send -a \"system\" \"Welcome\""
 
 [hot_corners]
@@ -437,7 +487,7 @@ enabled = [ "noctalia/bongocat" ]
 [shell]
 app_icon_color = "secondary"
 app_icon_colorize = true
-avatar_path = "~/.config/hypr/wallpapers/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg"
+avatar_path = "/home/cameronv/.config/hypr/wallpapers/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg"
 corner_radius_scale = 2.0
 font_family = "Adwaita Sans"
 password_style = "random"
@@ -458,6 +508,7 @@ show_close_buttons = false
         prefix = ""
 
     [shell.panel]
+    control_center_placement = "floating"
     floating_layer = "top"
     open_near_click_control_center = true
     session_placement = "floating"
@@ -539,14 +590,17 @@ directory = "~/.config/hypr/wallpapers"
 edge_smoothness = 0.0
 transition_on_startup = true
 
+    [wallpaper.automation]
+    recursive = true
+
     [wallpaper.default]
-    path = "~/.config/hypr/wallpapers/macos-monterey-dark.jpg"
+    path = "/home/cameronv/.config/hypr/wallpapers/alena-aenami-mountains2k.jpg"
 
     [wallpaper.last]
-    path = "~/.config/hypr/wallpapers/macos-monterey-dark.jpg"
+    path = "/home/cameronv/.config/hypr/wallpapers/alena-aenami-mountains2k.jpg"
 
     [wallpaper.monitors.eDP-1]
-    path = "~/.config/hypr/wallpapers/macos-monterey-dark.jpg"
+    path = "/home/cameronv/.config/hypr/wallpapers/alena-aenami-mountains2k.jpg"
 
 [widget.active_window]
 capsule = true
@@ -565,6 +619,11 @@ min_length = 0
     [widget.active_window.actions]
     middle = "none"
 
+[widget.audio_visualizer]
+bands = 8
+color_1 = "secondary"
+width = 81
+
 [widget.brightness]
 anchor = true
 show_tooltip = true
@@ -572,51 +631,4 @@ show_tooltip = true
 [widget.cat]
 audio_spectrum = true
 capsule = true
-capsule_foreground = "secondary"
-capsule_opacity = 0.0
-capsule_padding = 0
-capsule_radius = 0
-enable_scroll = false
-interactive = false
-scale = 1.2000000000000002
-tappy_mode = true
-type = "noctalia/bongocat:cat"
-use_mpris_filter = true
-
-[widget.clock]
-color = "secondary"
-font_scale = 1.2
-format = "{:%I:%M}"
-
-[widget.control-center]
-anchor = true
-
-[widget.media]
-hide_when_no_media = true
-max_length = 160
-
-[widget.network]
-show_label = false
-
-[widget.ram]
-visualization = "none"
-
-[widget.session]
-color = "secondary"
-
-[widget.sysmon]
-stat = "gpu_usage"
-
-[widget.taskbar]
-active_indicator_color = "tertiary"
-capsule = true
-capsule_border_width = 0.0
-group_by_workspace = true
-hide_empty_workspaces = true
-prefer_symbolic_icons = true
-show_active_indicator = false
-
-[widget.workspaces]
-interactive = false
-max_label_chars = 2
-style = "focus_hint"
+capsule_foreground =
