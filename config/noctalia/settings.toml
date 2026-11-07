@@ -24,7 +24,6 @@ order = [ "left", "controlpanel" ]
     end = [ "caffeine", "wallpaper", "notifications", "volume", "brightness", "bluetooth", "network", "battery", "session" ]
     font_family = "JetBrains Mono ExtraBold"
     font_scale = 0.79999998956918716
-    layer = "overlay"
     margin_edge = 4
     margin_ends = 300
     margin_opposite_edge = 100
