@@ -55,6 +55,10 @@ function writeFile(path, data) -- simple wrapper function for writing to kv
     file:close();
 end
 
+function isSetupComplete()
+    return readFile(basePath .. "lilac/kv/setupcomplete");
+end
+
 local function lilacPM_reset()
     debugOut("Setting up lilacPM", "none");
     io.popen("killall batCheck"); -- use popen so the system waits for the processes to be killed
@@ -99,18 +103,21 @@ function setupGui(force)
     debugOut("Setting up shell", "none");
     debugOut("setupComplete:" .. tostring(setupComplete));
 
-    io.popen("killall qs");
-    sleep(0.01);
-    hl.exec_cmd("qs -c overview");
-
-    if readFile(basePath .. "lilac/kv/setupcomplete") == "0" or force then
-        hl.exec_cmd("noctalia");
+    if isSetupComplete() == "0" or force then
+        io.popen("killall noctalia");
+        
         sleep(0.2);
+        hl.exec_cmd("noctalia");
         writeFile(basePath .. "lilac/kv/setupcomplete", "1");
+        sleep(0.5);
+        --hl.exec_cmd("hyprctl reload");
         setupComplete = true;
-        hl.exec_cmd("hyprctl reload");
     else
         debugOut("Shell is already loaded, Reloading config.", "warn");
+        io.popen("killall qs");
+        sleep(0.01);
+        hl.exec_cmd("hypridle");
+        hl.exec_cmd("qs -dc overview");
     end
     debugOut("Setup shell", "ok");
 end
@@ -150,7 +157,7 @@ end
 
 function startLilac() -- starts essential lilac processes and loads configs
     debugOut("Starting...", "none");
-    if readFile(basePath .. "lilac/kv/setupcomplete") == "0" then
+    if isSetupComplete() == "0" then
         debugOut("Resetting Game Mode", "none");
         writeFile(basePath .. "lilac/kv/gamingmode/state", "0");
         io.popen(basePath .. "lilac/gamingMode " .. basePath .. " 1");
@@ -167,10 +174,11 @@ function startLilac() -- starts essential lilac processes and loads configs
     debugOut("Initial setup done!");
 end
 
+debugOut("Starting!");
+
 setupVars();
 hl.on("hyprland.start", function()
     debugOut("Cold start detected!", "none");
-    hl.exec_cmd(basePath .. "lilac/lilacgui 0");
     -- io.popen("tlpctl performance");
     -- io.popen("");
     setupComplete = false;
@@ -182,8 +190,4 @@ hl.on("hyprland.start", function()
 end)
 
 kv_load();
-
-io.popen("killall qs");
-sleep(0.01);
-hl.exec_cmd("hypridle");
-hl.exec_cmd("qs -c overview");
+setupGui();
