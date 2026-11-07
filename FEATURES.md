@@ -15,9 +15,9 @@
   - [ ] Allows user-configurable modes based on laptop state
 
 ### Installer:
-  - [ ] Detects package manager
-  - [ ] Installs dependancies
-  - [ ] Clones github
-  - [ ] Compiles binaries
-  - [ ] Copies compiled binaries and assets into .config folder
+  - [X] Detects package manager
+  - [X] Installs dependancies
+  - [X] Clones github
+  - [X] Compiles binaries
+  - [X] Copies compiled binaries and assets into .config folder
   - [ ] Looks cool
