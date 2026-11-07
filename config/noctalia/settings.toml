@@ -126,25 +126,13 @@ inactive_opacity = 0.89999997988343239
 inactive_scale = 1.0
 launcher_position = "start"
 magnification_scale = 2.0
-pinned = [
-    "zen",
-    "org.prismlauncher.PrismLauncher",
-    "rustdesk",
-    "github-desktop",
-    "discord",
-    "org.godotengine.Godot",
-    "steam",
-    "com.valvesoftware.SteamLink",
-    "com.visualstudio.code",
-    "arduino-ide-v2",
-    "org.vinegarhq.Sober"
-]
+pinned = []
 reserve_space = false
 show_dots = true
 
 [hooks]
-battery_discharging = "/home/cameronv/.config/hypr/lilac/lilacPM/chargeState 0"
-battery_plugged = "/home/cameronv/.config/hypr/lilac/lilacPM/chargeState 1"
+battery_discharging = "~/.config/hypr/lilac/lilacPM/chargeState 0"
+battery_plugged = "~/.config/hypr/lilac/lilacPM/chargeState 1"
 started = "notify-send -a \"system\" \"Welcome\""
 
 [hot_corners]
@@ -449,7 +437,7 @@ enabled = [ "noctalia/bongocat" ]
 [shell]
 app_icon_color = "secondary"
 app_icon_colorize = true
-avatar_path = "/home/cameronv/.config/hypr/wallpapers/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg"
+avatar_path = "~/.config/hypr/wallpapers/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg"
 corner_radius_scale = 2.0
 font_family = "Adwaita Sans"
 password_style = "random"
@@ -552,13 +540,13 @@ edge_smoothness = 0.0
 transition_on_startup = true
 
     [wallpaper.default]
-    path = "/home/cameronv/.config/hypr/wallpapers/macos-monterey-dark.jpg"
+    path = "~/.config/hypr/wallpapers/macos-monterey-dark.jpg"
 
     [wallpaper.last]
-    path = "/home/cameronv/.config/hypr/wallpapers/macos-monterey-dark.jpg"
+    path = "~/.config/hypr/wallpapers/macos-monterey-dark.jpg"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/cameronv/.config/hypr/wallpapers/macos-monterey-dark.jpg"
+    path = "~/.config/hypr/wallpapers/macos-monterey-dark.jpg"
 
 [widget.active_window]
 capsule = true
