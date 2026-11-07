@@ -106,7 +106,6 @@ end
 function setupGui(force)
     debugOut("Setting up shell", "none");
     debugOut("setupComplete:" .. tostring(setupComplete));
-    io.popen("killall qs");
 
     sleep(0.1);
     if isSetupComplete() == "0" or force then
@@ -118,12 +117,13 @@ function setupGui(force)
         sleep(0.5);
         hl.exec_cmd("noctalia");
         --hl.exec_cmd("hyprctl reload");
+        hl.exec_cmd("qs -nc overview");
         setupComplete = true;
     else
         debugOut("Shell is already loaded, Reloading config.", "warn");
 
     end
-    hl.exec_cmd("qs -dc overview");
+    
     debugOut("Setup shell", "ok");
 end
 
@@ -138,8 +138,9 @@ function gameMode(switch)
         if gaming_mode_ultra_pro_max then
             setupGui(true);
         end
-            hl_gameMode = false;
+        hl_gameMode = false;
         hl.exec_cmd(gmPath .. "1");
+        hl.exec_cmd("hyprctl reload");
         notify("Gaming Mode disabled");
         return;
     end
@@ -198,4 +199,4 @@ hl.on("hyprland.start", function()
 end)
 
 kv_load();
-setupGui(hl.exec_cmd("noctalia"));
+setupGui();
