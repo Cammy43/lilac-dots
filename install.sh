@@ -116,6 +116,9 @@ curl https://raw.githubusercontent.com/Cammy43/lilac-dots/refs/heads/main/instal
 
 sh install.sh $devMode
 
+sudo systemctl enable polkit --now
+systemctl --user enable --no
+w hyprpolkitagent
 #clone the lilac repo and copy the config folders
 git clone https://github.com/Cammy43/lilac-dots/ > /dev/null
 cd lilac-dots
