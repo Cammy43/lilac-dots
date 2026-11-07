@@ -102,7 +102,11 @@ end
 function setupGui(force)
     debugOut("Setting up shell", "none");
     debugOut("setupComplete:" .. tostring(setupComplete));
+    io.popen("killall qs");
 
+    sleep(0.01);
+    hl.exec_cmd("hypridle");
+    hl.exec_cmd("qs -dc overview");
     if isSetupComplete() == "0" or force then
         io.popen("killall noctalia");
         
@@ -114,10 +118,7 @@ function setupGui(force)
         setupComplete = true;
     else
         debugOut("Shell is already loaded, Reloading config.", "warn");
-        io.popen("killall qs");
-        sleep(0.01);
-        hl.exec_cmd("hypridle");
-        hl.exec_cmd("qs -dc overview");
+
     end
     debugOut("Setup shell", "ok");
 end
@@ -137,7 +138,7 @@ function gameMode(switch, state)
         return;
     end
 
-    -- if gaming_mode_res_switch == true then
+    --g if gaming_mode_res_switch == true then
     -- debugOut("STUPID VARIABLE: " .. hl_gamingModeRes)
     -- hl.exec_cmd("hyprctl keyword monitor " .. hl_gamingModeRes);
     -- end
@@ -146,6 +147,7 @@ function gameMode(switch, state)
     else
         hl.exec_cmd("hyprctl reload");
     end
+
     if gaming_mode_ultra_pro_max then
         io.popen("killall noctalia"); -- lol
     end
