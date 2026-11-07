@@ -17,4 +17,5 @@ Run this command to download and run the installer:
 ```bash
 curl https://raw.githubusercontent.com/Cammy43/lilac-dots/refs/heads/main/install.sh | sh
 ```
-
+Once it finishes, you can run ``` start-hyprland```. If the installer fails, good luck!
+If you are using sddm or lightdm, hyprland should already be selected as the window manager, so you can sign in as usual. If not, click on the window manager dropdown and select hyprland.
