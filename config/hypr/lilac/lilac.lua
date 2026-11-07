@@ -62,18 +62,22 @@ end
 local function lilacPM_reset()
     debugOut("Setting up lilacPM", "none");
     io.popen("killall batCheck"); -- use popen so the system waits for the processes to be killed
+        io.popen("killall hypridle");
     writeFile(basePath .. "lilac/kv/lilacPM/prof_on_charge", power_profile_while_charging);
     writeFile(basePath .. "lilac/kv/lilacPM/prof_on_bat", power_profile_on_battery);
     writeFile(basePath .. "lilac/kv/lilacPM/prof_on_low", power_profile_on_low_battery);
     writeFile(basePath .. "lilac/kv/lilacPM/lowbatlevel", tostring(low_battery_level));
     writeFile(basePath .. "lilac/kv/lilacPM/lockstate", tostring(0));
+    io.popen(basePath .. "lilac/lilacPM/chargeState 0 " .. username);
+    sleep(0.1);
     hl.exec_cmd(basePath .. "lilac/lilacPM/batCheck " .. username);
+    hl.exec_cmd("hypridle");
     debugOut("Set up lilacPM", "ok");
 end
 
 local function kv_reset()
     debugOut("Resetting kv", "none");
-    io.popen(basePath .. "lilac/lilacPM/chargeState 0 " .. username);
+    
     -- writeFile(basePath .. "lilac/kv/" .. username);
     writeFile(basePath .. "lilac/kv/username", username);
     debugOut("Reset kv", "ok");
@@ -104,26 +108,26 @@ function setupGui(force)
     debugOut("setupComplete:" .. tostring(setupComplete));
     io.popen("killall qs");
 
-    sleep(0.01);
-    hl.exec_cmd("hypridle");
-    hl.exec_cmd("qs -dc overview");
+    sleep(0.1);
     if isSetupComplete() == "0" or force then
         io.popen("killall noctalia");
         
         sleep(0.2);
-        hl.exec_cmd("noctalia");
+        
         writeFile(basePath .. "lilac/kv/setupcomplete", "1");
         sleep(0.5);
+        hl.exec_cmd("noctalia");
         --hl.exec_cmd("hyprctl reload");
         setupComplete = true;
     else
         debugOut("Shell is already loaded, Reloading config.", "warn");
 
     end
+    hl.exec_cmd("qs -dc overview");
     debugOut("Setup shell", "ok");
 end
 
-function gameMode(switch, state)
+function gameMode(switch)
     debugOut("lilac::gameMode() called");
     local gmPath = basePath .. "lilac/gamingMode " .. basePath .. " ";
 
@@ -131,14 +135,16 @@ function gameMode(switch, state)
         debugOut("lilac::gameMode() resetting");
         writeFile(basePath .. "lilac/kv/gamingmode/state", "0");
 
-        setupGui(true);
-        hl_gameMode = false;
+        if gaming_mode_ultra_pro_max then
+            setupGui(true);
+        end
+            hl_gameMode = false;
         hl.exec_cmd(gmPath .. "1");
         notify("Gaming Mode disabled");
         return;
     end
 
-    --g if gaming_mode_res_switch == true then
+    -- if gaming_mode_res_switch == true then
     -- debugOut("STUPID VARIABLE: " .. hl_gamingModeRes)
     -- hl.exec_cmd("hyprctl keyword monitor " .. hl_gamingModeRes);
     -- end
@@ -192,4 +198,4 @@ hl.on("hyprland.start", function()
 end)
 
 kv_load();
-setupGui();
+setupGui(hl.exec_cmd("noctalia"));
