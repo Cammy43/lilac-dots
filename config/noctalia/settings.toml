@@ -112,8 +112,6 @@ warning_threshold = 0
 
 [control_center]
 hidden_tabs = [ "screen-time" ]
-show_session_button = false
-show_shortcut_labels = false
 sidebar = "none"
 sidebar_section = "none"
 width = 600
@@ -181,8 +179,8 @@ reserve_space = false
 show_dots = true
 
 [hooks]
-battery_discharging = "/home/cameronv/.config/hypr/lilac/lilacPM/chargeState 0"
-battery_plugged = "/home/cameronv/.config/hypr/lilac/lilacPM/chargeState 1"
+battery_discharging = "~/.config/hypr/lilac/lilacPM/chargeState 0"
+battery_plugged = "~/.config/hypr/lilac/lilacPM/chargeState 1"
 started = "notify-send -a \"system\" \"Welcome\""
 
 [hot_corners]
@@ -487,7 +485,7 @@ enabled = [ "noctalia/bongocat" ]
 [shell]
 app_icon_color = "secondary"
 app_icon_colorize = true
-avatar_path = "/home/cameronv/.config/hypr/wallpapers/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg"
+avatar_path = "~/.config/hypr/wallpapers/macos-monterey-wwdc-21-stock-dark-mode-5k-3840x2160-5585.jpg"
 corner_radius_scale = 2.0
 font_family = "Adwaita Sans"
 password_style = "random"
@@ -594,13 +592,13 @@ transition_on_startup = true
     recursive = true
 
     [wallpaper.default]
-    path = "/home/cameronv/.config/hypr/wallpapers/alena-aenami-mountains2k.jpg"
+    path = "~/.config/hypr/wallpapers/alena-aenami-mountains2k.jpg"
 
     [wallpaper.last]
-    path = "/home/cameronv/.config/hypr/wallpapers/alena-aenami-mountains2k.jpg"
+    path = "~/.config/hypr/wallpapers/alena-aenami-mountains2k.jpg"
 
     [wallpaper.monitors.eDP-1]
-    path = "/home/cameronv/.config/hypr/wallpapers/alena-aenami-mountains2k.jpg"
+    path = "~/.config/hypr/wallpapers/alena-aenami-mountains2k.jpg"
 
 [widget.active_window]
 capsule = true
@@ -631,4 +629,55 @@ show_tooltip = true
 [widget.cat]
 audio_spectrum = true
 capsule = true
-capsule_foreground =
+capsule_foreground = "secondary"
+capsule_opacity = 0.0
+capsule_padding = 0
+capsule_radius = 0
+enable_scroll = false
+interactive = false
+scale = 1.2000000000000002
+tappy_mode = true
+type = "noctalia/bongocat:cat"
+use_mpris_filter = true
+
+[widget.clock]
+color = "secondary"
+font_scale = 1.2
+format = "{:%I:%M}"
+
+[widget.control-center]
+anchor = true
+
+[widget.date]
+color = "secondary"
+format = "{:%a %b %d}"
+
+[widget.media]
+hide_when_no_media = true
+max_length = 160
+
+[widget.network]
+show_label = false
+
+[widget.ram]
+visualization = "none"
+
+[widget.session]
+color = "secondary"
+
+[widget.sysmon]
+stat = "gpu_usage"
+
+[widget.taskbar]
+active_indicator_color = "tertiary"
+capsule = true
+capsule_border_width = 0.0
+group_by_workspace = true
+hide_empty_workspaces = true
+prefer_symbolic_icons = true
+show_active_indicator = false
+
+[widget.workspaces]
+interactive = false
+max_label_chars = 2
+style = "focus_hint"
