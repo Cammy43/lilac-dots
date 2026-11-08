@@ -3,14 +3,15 @@
 -- Any changes made to this file will either break 
 -- everything or be overwritten after a restart
 require("lilac")
-hl_terminal = ""
-hl_fileManager = ""
-hl_menu = ""
+hl_terminal = "";
+hl_fileManager = "";
+hl_menu = "";
 
-ll_username = ""
-basePath = "" -- path to the hyprland config folder. Calculated at lilac::lua::startLilac()
-hl_desktopSwitchSpeed = 0
+l_username = "";
+basePath = ""; -- path to the hyprland config folder. Calculated at lilac::lua::startLilac()
+hl_desktopSwitchSpeed = 0;
 setupComplete = false;
 coldstart = false;
-hl_gameModePath = ""
-ll_gameMode = false;
+hl_gameModePath = "";
+l_gameMode = false;
+hl_zeroscaling = false;
