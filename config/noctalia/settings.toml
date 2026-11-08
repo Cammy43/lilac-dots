@@ -9,7 +9,7 @@ order = [ "left", "controlpanel" ]
     [bar.controlpanel]
     background_opacity = 0.44999998994171619
     border = "primary_container"
-    border_width = 1.0
+    border_width = 1.5
     capsule = true
     capsule_border = "primary_container"
     capsule_border_width = 0.0
@@ -21,7 +21,6 @@ order = [ "left", "controlpanel" ]
     end = [ "group:g1", "caffeine", "wallpaper", "notifications" ]
     font_family = "JetBrains Mono ExtraBold"
     font_scale = 0.79999998956918716
-    margin_edge = 4
     margin_ends = 480
     margin_opposite_edge = 100
     padding = 8
@@ -40,7 +39,8 @@ order = [ "left", "controlpanel" ]
 
         [[bar.controlpanel.capsule_group]]
         accordion = true
-        accordion_direction = "end"
+        accordion_delay_ms = 0
+        accordion_direction = "start"
         border = "primary_container"
         border_width = 0.0
         enabled = true
@@ -54,18 +54,19 @@ order = [ "left", "controlpanel" ]
     [bar.left]
     background_opacity = 0.44999998994171619
     border = "primary_container"
-    border_width = 1.0
+    border_width = 1.5
     capsule_border = "secondary"
     capsule_border_width = 0.0
     capsule_foreground = "secondary"
     capsule_opacity = 0.0
     capsule_padding = 8.0
     capsule_thickness = 0.74999998696148396
-    center = [ "group:g2" ]
+    center = [ "group:g1" ]
     color = "primary"
-    end = [ "tray", "group:g1", "network", "bluetooth", "battery", "session" ]
+    end = [ "tray", "brightness", "volume", "network", "bluetooth", "battery", "session" ]
     font_family = "JetBrains Mono NL ExtraBold"
     font_weight = 800
+    icon_color = "primary"
     margin_ends = 0
     padding = 16
     position = "left"
@@ -80,26 +81,14 @@ order = [ "left", "controlpanel" ]
 
         [[bar.left.capsule_group]]
         accordion = true
-        accordion_direction = "start"
-        border = "secondary"
-        border_width = 0.0
-        enabled = true
-        fill = "surface_container"
-        foreground = "secondary"
-        id = "g1"
-        members = [ "brightness", "volume" ]
-        opacity = 0.0
-        padding = 0.0
-
-        [[bar.left.capsule_group]]
-        accordion = true
+        accordion_delay_ms = 0
         accordion_direction = "end"
-        border = "secondary"
+        border = "primary"
         border_width = 0.0
         enabled = true
         fill = "surface_container"
-        foreground = "secondary"
-        id = "g2"
+        foreground = "primary"
+        id = "g1"
         members = [ "clock", "date" ]
         opacity = 0.0
         padding = 8.0
@@ -121,17 +110,17 @@ width = 600
 
 [desktop_widgets]
 schema_version = 2
-widget_order = [ "desktop-widget-0000000000000001" ]
+widget_order = [ "desktop-widget-0000000000000003" ]
 
     [desktop_widgets.grid]
     cell_size = 16
     major_interval = 4
     visible = true
 
-    [desktop_widgets.widget.desktop-widget-0000000000000001]
-    box_height = 352.0
-    box_width = 912.0
-    cx = 224.00001525878906
+    [desktop_widgets.widget.desktop-widget-0000000000000003]
+    box_height = 208.0
+    box_width = 896.0
+    cx = 152.00001525878906
     cy = 450.0
     output = "eDP-1"
     placement_height = 900.0
@@ -139,12 +128,12 @@ widget_order = [ "desktop-widget-0000000000000001" ]
     rotation = 1.5707963705062866
     type = "audio_visualizer"
 
-        [desktop_widgets.widget.desktop-widget-0000000000000001.settings]
+        [desktop_widgets.widget.desktop-widget-0000000000000003.settings]
         background = false
-        bands = 32
+        bands = 44
         centered = false
-        color_1 = "tertiary_container"
-        color_2 = "secondary"
+        color_1 = "tertiary"
+        color_2 = "primary"
         mirrored = true
         reversed = false
         show_wave = false
@@ -459,12 +448,12 @@ widget_order = [
 
 [notification]
 background_opacity = 0.44999998994171619
-border_color = "secondary"
-border_width = 2.0
+border_color = "tertiary"
+border_width = 1.5
 follow_focused_output = true
 max_visible = 4
 offset_y = 32
-width = 300
+width = 280
 
 [osd]
 background_opacity = 0.44999998994171619
@@ -492,7 +481,7 @@ password_style = "random"
 show_close_buttons = false
 
     [shell.animation]
-    speed = 0.5000000074505806
+    speed = 0.70000001043081284
 
     [shell.launcher]
     compact = true
@@ -506,6 +495,8 @@ show_close_buttons = false
         prefix = ""
 
     [shell.panel]
+    border_color = "primary_container"
+    border_width = 2.0
     control_center_placement = "floating"
     floating_layer = "top"
     open_near_click_control_center = true
@@ -676,6 +667,14 @@ group_by_workspace = true
 hide_empty_workspaces = true
 prefer_symbolic_icons = true
 show_active_indicator = false
+
+[widget.tray]
+capsule = true
+capsule_fill = "primary_container"
+capsule_opacity = 0.5
+capsule_padding = 10
+color = "secondary"
+icon_color = "secondary"
 
 [widget.workspaces]
 interactive = false
