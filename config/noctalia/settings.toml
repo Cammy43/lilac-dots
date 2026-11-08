@@ -568,7 +568,7 @@ community_palette = "Oxocarbon"
 mode = "dark"
 pure_black_dark = true
 source = "wallpaper"
-wallpaper_scheme = "vibrant"
+wallpaper_scheme = "soft"
 
     [theme.templates]
     enable_builtin_templates = false
