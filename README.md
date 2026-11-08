@@ -14,6 +14,7 @@ https://www.youtube.com/watch?v=aB3Av5daA0c
 <img width="1920" height="1080" alt="2026-11-07-200153_hyprshot" src="https://github.com/user-attachments/assets/6513fa22-4c66-41d1-a6e0-b616574cba6c" />
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/343373cb-b5bb-4574-802b-882136e30820" />
 <img width="1920" height="1080" alt="2026-11-07-204034_hyprshot" src="https://github.com/user-attachments/assets/ea91c0a7-5306-476c-8115-48e3e3a4d3ee" />
+
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/615f3952-19d3-402c-bdac-71aecdadd78b" />
 
 
