@@ -17,6 +17,10 @@ https://www.youtube.com/watch?v=aB3Av5daA0c
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/615f3952-19d3-402c-bdac-71aecdadd78b" />
 
+### Virtual Machine friendly!
+This image was captured inside a virtual machine.
+<img width="1920" height="1080" alt="2026-11-07-215501_hyprshot" src="https://github.com/user-attachments/assets/136e9952-3f2d-4545-b5b1-1cfb65c419ef" />
+
 
 ### Since I'm equipped with a brain I didn't use AI for any of this project, or any of my other projects unless specified in the readme.
 
