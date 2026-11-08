@@ -8,7 +8,7 @@ power_profile_while_charging = "performance"
 power_profile_on_battery = "balanced"
 power_profile_on_low_battery = "power-saver"
 -- If you are using a laptop, set this to true
-laptop = true
+laptop = false
 
 -- If enabled, gaming mode will switch the monitor config to the one specified in ~/config/hypr/gamingMonitors.lua
 gaming_mode_res_switch = true
