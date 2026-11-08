@@ -4,6 +4,9 @@
 Lilac is modern and sleek with a few tricks up it's sleeve to make it actually useful. 
 It uses hyprland, noctalia shell, quickshell, and tlp and is laptop friendly.
 
+### Showcase:
+https://www.youtube.com/watch?v=aB3Av5daA0c
+
 # Gallery
 
 <img width="1920" height="1080" alt="2026-11-07-203946_hyprshot" src="https://github.com/user-attachments/assets/f1390665-e733-4e51-96e1-f749abe2e95d" />
