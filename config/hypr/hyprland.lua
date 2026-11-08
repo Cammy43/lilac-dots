@@ -39,7 +39,7 @@ hl.config({
     },
 
     decoration = {
-        rounding = 15,
+        rounding = 16,
         rounding_power = 2,
 
         -- Change transparency of focused and unfocused windows
@@ -47,16 +47,16 @@ hl.config({
         inactive_opacity = 1.0,
 
         shadow = {
-            enabled = false,
-            range = 4,
-            render_power = 1,
+            enabled = true,
+            range = 10,
+            render_power = 4,
             color = 0xee1a1a1a
         },
 
         blur = {
             enabled = true,
-            size = 2,
-            passes = 2,
+            size = 4,
+            passes = 3,
             vibrancy = 0.1696
         }
     },
@@ -185,8 +185,8 @@ hl.animation({
     bezier = "quick",
     style = "slide"
 })
- hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = hl_desktopSwitchSpeed, bezier = "quick", style = "slide" })
- hl.animation({ leaf = "workspacesOut", enabled = true,  speed = hl_desktopSwitchSpeed, bezier = "quick", style = "slide" })
+
+
 hl.animation({
     leaf = "zoomFactor",
     enabled = true,
@@ -194,23 +194,8 @@ hl.animation({
     bezier = "quick"
 })
 
--- Ref https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
--- "Smart gaps" / "No gaps when only"
--- uncomment all if you wish to use that.
--- hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
--- hl.workspace_rule({ workspace = "f[1]",   gaps_out = 0, gaps_in = 0 })
--- hl.window_rule({
---     name  = "no-gaps-wtv1",
---     match = { float = false, workspace = "w[tv1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
--- hl.window_rule({
---     name  = "no-gaps-f1",
---     match = { float = false, workspace = "f[1]" },
---     border_size = 0,
---     rounding    = 0,
--- })
+hl.animation({ leaf = "workspacesIn",  enabled = true,  speed = hl_desktopSwitchSpeed, bezier = "quick", style = "slide" })
+hl.animation({ leaf = "workspacesOut", enabled = true,  speed = hl_desktopSwitchSpeed, bezier = "quick", style = "slide" })
 
 -- See https://wiki.hypr.land/Configuring/Layouts/Dwindle-Layout/ for more
 hl.config({
@@ -300,7 +285,7 @@ hl.device({
 local mainMod = "SUPER" -- Sets "Windows" key as main modifier
 
 -- Example binds, see https://wiki.hypr.land/Configuring/Basics/Binds/ for more
-hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("foot"))
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(hl_terminal))
 local closeWindowBind = hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 -- closeWindowBind:set_enabled(false)
 -- hl.bind(mainMod .. " + M", hl.dsp.exec_cmd("command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch 'hl.dsp.exit()'"))
@@ -441,6 +426,11 @@ hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), {
     locked = true
 })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), {
+    locked = true
+})
+
+
+hl.bind(mainMod .. "+L", hl.dsp.exec_cmd("hyprlock"), {
     locked = true
 })
 
