@@ -17,11 +17,11 @@ order = [ "left", "controlpanel" ]
     capsule_opacity = 0.0
     capsule_padding = 2.0
     capsule_thickness = 0.74999998696148396
-    center = []
+    center = [ "audio_visualizer" ]
     end = [ "group:g1", "caffeine", "wallpaper", "notifications" ]
     font_family = "JetBrains Mono ExtraBold"
     font_scale = 0.79999998956918716
-    margin_ends = 480
+    margin_ends = 400
     margin_opposite_edge = 100
     padding = 8
     panel_overlap = 0
@@ -30,7 +30,7 @@ order = [ "left", "controlpanel" ]
     scale = 1.4000000134110451
     show_on_workspace_switch = false
     smart_auto_hide = true
-    start = [ "media", "cat", "audio_visualizer" ]
+    start = [ "media", "cat" ]
     thickness = 45
     widget_spacing = 10
 
@@ -609,9 +609,10 @@ min_length = 0
     middle = "none"
 
 [widget.audio_visualizer]
-bands = 8
+bands = 10
 color_1 = "secondary"
-width = 81
+scale = 1.1500000000000001
+width = 84
 
 [widget.brightness]
 anchor = true
@@ -644,8 +645,11 @@ color = "secondary"
 format = "{:%a %b %d}"
 
 [widget.media]
-hide_when_no_media = true
-max_length = 160
+art_size = 20
+max_length = 128
+min_length = 0
+rotate_album_art = true
+title_scroll = "on_hover"
 
 [widget.network]
 show_label = false
